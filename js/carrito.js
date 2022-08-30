@@ -18,9 +18,7 @@ const traerDatos = () =>{
     .then((response) => response.json())
     .then((datos) => {
         // Volcando al array de productos el contenido del json
-        datos.data.forEach(element => {
-            variablesExport.stockCubiertas.push(element)
-        })
+        variablesExport.stockCubiertas = datos.data
         // Llamado a la function para mostrar los productos en DOM
         mostrarCarrito()
     })

@@ -9,9 +9,7 @@ const traerDatos = () =>{
     .then((response) => response.json())
     .then((datos) => {
         // Volcando al array de productos el contenido del json
-        datos.data.forEach(element => {
-            variablesExport.stockCubiertas.push(element)
-        })
+        variablesExport.stockCubiertas = datos.data
         // Llamado a la function para mostrar los productos en DOM
         generarGrillaProductos()
     })
@@ -53,7 +51,7 @@ function generarGrillaProductos() {
                         <p class="precioCubierta"><strong>$ ${cubierta.precio}</strong></p>
                         <p class="descripcionCubierta">${cubierta.descripcion}</p>
                         <p class="medidaCubierta">${cubierta.medida}</p>
-                        <button class="btnAgregarProducto">Agregar</button>
+                        <button class="btnAgregarProducto">+ al carrito</button>
                     </div>`
         domExport.contenedorProductos.innerHTML += html
     }
