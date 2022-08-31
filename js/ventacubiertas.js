@@ -1,7 +1,8 @@
 
-// Importando módulos variables y DOM
+// Importando módulos functions, variables y DOM
 import {variablesExport} from './variables.js'
 import {domExport} from './DOM.js'
+import {functionExport} from './functions.js'
 
 // Pidiendo información desde json local
 const traerDatos = () =>{
@@ -59,14 +60,15 @@ function generarGrillaProductos() {
     for (let i=0; i < domExport.btnAgregar.length; i++){
         domExport.btnAgregar[i].addEventListener("click", function (){
             let idProductoAgregado = this.parentElement.id
+            console.log(idProductoAgregado)
             // Pusheando id de productos elegidos al carrito
             variablesExport.carrito.push(idProductoAgregado)
             // Obtengo el producto que coincide con el click para extraer el valor del producto para el total del preview del carrito
             const productoPorId = variablesExport.stockCubiertas.find(idProducto => idProducto.id == idProductoAgregado)
-            // Pusheando el valor del producto al array del total preview carrito
-            variablesExport.totalPreviewCarrito.push(productoPorId.precio)
+            // Guardando el valor del producto al total preview carrito
+            variablesExport.totalPreviewCarrito += productoPorId.precio
             // Guardando carrito y total preview carrito en storage
-            guardarCarritoStorage()
+            functionExport.guardarCarritoStorage()
             // Llamando function preview carrito
             previewCarrito()
         }, false)
@@ -75,22 +77,7 @@ function generarGrillaProductos() {
 
 // Preview resúmen del carrito html ventacubiertas
 function previewCarrito(){
-    domExport.DOMCarrito.innerHTML = `<a href="carrito.html">CARRITO: <span>${variablesExport.carrito.length} ITEM(S) - </span><span>$ ${sumaTotal()} TOTAL</span></a>`
-}
-
-// Función precio total preview carrito
-function sumaTotal (){
-    // Sumando total
-    const precioAcumulado = variablesExport.totalPreviewCarrito.reduce((acumulado, valorActual) => {
-        return acumulado + valorActual
-    }, 0)
-    return precioAcumulado
-}
-
-// Function para guardar carrito en storage
-function guardarCarritoStorage () {
-    sessionStorage.setItem('carrito', JSON.stringify(variablesExport.carrito));
-    sessionStorage.setItem('totalPreviewCarrito', JSON.stringify(variablesExport.totalPreviewCarrito));
+    domExport.DOMCarrito.innerHTML = `<a href="carrito.html">CARRITO: <span>${variablesExport.carrito.length} ITEM(S) - </span><span>$ ${variablesExport.totalPreviewCarrito} TOTAL</span></a>`
 }
 
 // Function para cargar datos comprador storage y preview carrito, si los hubiera

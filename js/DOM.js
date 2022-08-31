@@ -12,6 +12,7 @@ const email = document.querySelector(".email")
 const btnFinalizarCompra = document.querySelector('.finCompra')
 const accionesCarrito = document.querySelector('.accionesCarrito')
 const totalCompra = document.querySelector('.totalCompra')
+const btnQuitarProducto = document.getElementsByClassName('imgCesto')
 
 // Objeto de DOM a exportar
 export const domExport = {
@@ -26,5 +27,6 @@ export const domExport = {
     email,
     btnFinalizarCompra,
     accionesCarrito,
-    totalCompra
+    totalCompra,
+    btnQuitarProducto
 }

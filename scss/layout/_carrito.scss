@@ -27,14 +27,15 @@
             margin-top: 20px;
             margin-bottom: 20px;
             align-items: center;
-            max-width: 350px;
+            max-width: 385px;
             padding: 30px 10px;
             display: grid;
             grid-template-areas:
                 'titulo titulo'
                 'img medida'
                 'img precio'
-                'img cantidad';
+                'img cantidad'
+                'img subtotal';
                 grid-template-rows: 2rem repeat(3, 2rem);
                 grid-template-columns: 1fr 1fr;
             .descripcionCubierta{
@@ -49,9 +50,18 @@
             }
             .precioCubierta{
                 grid-area: precio;
+                .btnQuitar{
+                    margin-left: 80px;
+                    img{
+                        width: 20%;
+                    }
+                }
             }
             .cantidad{
                 grid-area: cantidad;
+            }
+            .subTotal{
+                grid-area: subtotal;
             }
         }
     }
