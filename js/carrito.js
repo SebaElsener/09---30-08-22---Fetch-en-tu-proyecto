@@ -6,7 +6,7 @@ import {functionExport} from './functions.js'
 
 // Pidiendo información desde json local
 const traerDatos = () =>{
-    fetch('../datos.json')
+    fetch('https://www.mockachino.com/2db31ba0-0410-4e/users')
     .then((response) => response.json())
     .then((datos) => {
         // Volcando al array de productos el contenido del json
